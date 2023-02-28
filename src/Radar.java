@@ -19,7 +19,7 @@ public class Radar {
             xnate = x.nextDouble();
             System.out.println("Введите y");
             ynate = y.nextDouble();
-            if (Range < range && Range > 0 && range > 0)
+            if (Range > range && Range > 0 && range > 0)
                 break;
             else
                 System.out.println("Данные введены некорректно, попробуйте снова.");

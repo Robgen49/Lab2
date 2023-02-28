@@ -1,17 +1,37 @@
 import static java.lang.Character.*;
 
 public class Symbols {
-    public static void PrintSymbols() {
-        for (int i = 0x0400; i < 0x04FF; i++) {
-            if (i % 16 == 0)
-                System.out.println();
+    public static void PrintSymbols(int i, int str, int st) {
+        int countn = 0;
+        int count = 1;
+        while(i <= 0x04FF && countn<str && str > 0 && st > 0) {
             System.out.print((char) i + " ");
+            if (count == st){
+                System.out.println();
+                count = 1;
+                countn++;
+                i++;
+                continue;
+            }
+            count++;
+            i++;
         }
-        System.out.println();
-        for (int i = 0x20a0; i < 0x20a0+32; i++) {
-            if (i % 16 == 0)
-                System.out.println();
+
+    }
+    public static void PrintMoney(int i, int str, int st){
+        int countn = 0;
+        int count = 1;
+        while(i <= 0x20bf && countn<str && str > 0 && st > 0) {
             System.out.print((char) i + " ");
+            if (count == st){
+                System.out.println();
+                count = 1;
+                countn++;
+                i++;
+                continue;
+            }
+            count++;
+            i++;
         }
     }
     public static void PrintStr(String str){
@@ -21,16 +41,16 @@ public class Symbols {
         int lowletcount = 0;
         int digitcount = 0;
         for (char c: str.toCharArray()){
-            if (isLetter(c) && !(isRome(c))) {
+            if (isLetter(c) && !(IsRome(c))) {
                 lettercount++;
                 if (isLowerCase(c))
                     lowletcount++;
                 else
                     upletcount++;
             }
-            if (isRome(c) || (isDigit(c)))
+            if (IsRome(c) || (isDigit(c)))
                 digitcount++;
-            if(isRome(c))
+            if(IsRome(c))
                 romecount++;
 
         }
@@ -43,9 +63,12 @@ public class Symbols {
         System.out.println("Количество других символов: " + (str.length() - (lettercount + digitcount)));
         System.out.println("Общее количество символов: " + str.length());
     }
-
-    public static boolean isRome(char c){
-        String rome = "I X V";
+    public static  boolean IsRome(char c){
+        String rome = new String();
+        int k = 8528;
+        for (int i = 0x2160; i < 0x216f; i++) {
+            rome += (char) i;
+        }
         for(char b: rome.toCharArray())
             if (c == b)
                 return true;
